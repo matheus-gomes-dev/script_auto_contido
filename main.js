@@ -34,10 +34,12 @@ function catalogV2API(method, endpoint, data, cb){
 
 catalogV2API('GET', '/campos', '', function(response){
 	var campos = response;
-	console.log(response);
+	console.log(campos);
+	console.log(campos.length);
 
 	for(var i=0; i<campos.length; i++){
-        let html = catalog_combo_template;
+		console.log("Executando for!");
+        var html = catalog_combo_template;
         html = html.replace(/{{counter}}/g, i);
         html = html.replace('{{name}}', campos[i].nome);
         if(i == 0)
