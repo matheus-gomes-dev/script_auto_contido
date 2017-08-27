@@ -10,6 +10,8 @@ catalog_combo_template +=       '<select class="form-control form-catalogo" {{st
 catalog_combo_template +=           '<option value=""></option>';
 catalog_combo_template +=       '</select>';
 
+var cataloghtml = '<div>class="form-catalogo catalogo-combos">';
+
 //===CATALOG V2 API===
 function catalogV2API(method, endpoint, data, cb){
     $.ajax({
@@ -42,8 +44,11 @@ catalogV2API('GET', '/campos', '', function(response){
             html = html.replace('{{status}}', 'enabled');
         else
             html = html.replace('{{status}}', 'disabled');
-        $('.catalogo-combos').append(html);
+        //$('.catalogo-combos').append(html);
+        cataloghtml += html;
     }
+    cataloghtml += '</div>'
+    console.log(cataloghtml);
     //$('.form-catalogo').select2();
 
     //===GENERATE FIRST COMBO OPTIONS===
@@ -68,4 +73,5 @@ catalogV2API('GET', '/campos', '', function(response){
 });
 
 //document.body.innerHTML +=htmlTemplate;
+document.getElementById("catalogV2").innerHTML = cataloghtml;
 
