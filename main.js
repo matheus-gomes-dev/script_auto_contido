@@ -31,6 +31,7 @@ function catalogV2API(method, endpoint, data, cb){
 //======
 
 catalogV2API('GET', '/campos', '', function(response){
+	var campos = response;
 	console.log(response);
 
 	for(var i=0; i<campos.length; i++){
