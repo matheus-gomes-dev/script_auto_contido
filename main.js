@@ -46,9 +46,11 @@ catalogV2API('GET', '/campos', '', function(response){
             html = html.replace('{{status}}', 'disabled');
         //$('.catalogo-combos').append(html);
         cataloghtml += html;
+        console.log(cataloghtml);
     }
     cataloghtml += '</div>'
     console.log(cataloghtml);
+    document.getElementById("catalogV2").innerHTML = cataloghtml;
     //$('.form-catalogo').select2();
 
     //===GENERATE FIRST COMBO OPTIONS===
@@ -73,5 +75,5 @@ catalogV2API('GET', '/campos', '', function(response){
 });
 
 //document.body.innerHTML +=htmlTemplate;
-document.getElementById("catalogV2").innerHTML = cataloghtml;
+
 
