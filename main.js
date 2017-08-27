@@ -33,7 +33,7 @@ function catalogV2API(method, endpoint, data, cb){
 //======
 
 catalogV2API('GET', '/campos', '', function(response){
-	var campos = response;
+	var campos = response.campos;
 	console.log(campos);
 	console.log(campos.length);
 
