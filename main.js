@@ -47,7 +47,7 @@ catalogV2API('GET', '/campos', '', function(response){
     //$('.form-catalogo').select2();
 
     //===GENERATE FIRST COMBO OPTIONS===
-    catalogGetDelete('GET', '/opcoes_campos?id_campo=' + campos[0].id, '', function(res){
+    catalogV2API('GET', '/opcoes_campos?id_campo=' + campos[0].id, '', function(res){
         for(var j=0; j<res.opcoes_campos.length; j++){
             $('#sel0').append('<option value=' + res.opcoes_campos[j].id + '>' + res.opcoes_campos[j].nome + '</option>');
         }
