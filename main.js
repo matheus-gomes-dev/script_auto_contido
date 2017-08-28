@@ -1,6 +1,5 @@
 
 console.log("Pagina carregado com sucesso");
-console.log(aux)
 
 
 var htmlTemplate =  '<button>TESTE</button>'
