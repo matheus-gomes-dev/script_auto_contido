@@ -9,8 +9,8 @@ var catalog_combo_template =    '<label for="sel{{counter}}">{{name}}:</label><b
 catalog_combo_template +=       '<select class="form-control form-catalogo" {{status}} id="sel{{counter}}">';
 catalog_combo_template +=           '<option value=""></option>';
 catalog_combo_template +=       '</select>';
-
 var cataloghtml = '<div class="form-catalogo catalogo-combos">';
+var campos = [];
 
 //===CATALOG V2 API===
 function catalogV2API(method, endpoint, data, cb){
@@ -33,7 +33,7 @@ function catalogV2API(method, endpoint, data, cb){
 //======
 
 
-//===SET SELECT2 OIN TARGET ELEMENT===
+//===SET SELECT2 ON TARGET ELEMENT===
 function setSelect2(target, camposIndex){
     $(target).select2({
         ajax: {
@@ -76,7 +76,7 @@ function setSelect2(target, camposIndex){
 //======
 
 catalogV2API('GET', '/campos', '', function(response){
-	var campos = response.campos;
+	campos = response.campos;
 	console.log(campos);
 	console.log(campos.length);
 
