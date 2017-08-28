@@ -5,7 +5,7 @@ console.log("Pagina carregado com sucesso");
 var htmlTemplate =  '<button>TESTE</button>'
 var APIurl = 'https://mid-homolog.totvs.com:4007/api/v2';
 var catalog_combo_template =    '<label for="sel{{counter}}">{{name}}:</label><br>';
-catalog_combo_template +=       '<select style="width: ' + selectElementWidth + ';"';
+catalog_combo_template +=       '<select style="height=28px; width: ' + selectElementWidth + ';"';
 catalog_combo_template +=       'class="form-control form-catalogo" {{status}} id="sel{{counter}}">';
 catalog_combo_template +=           '<option value=""></option>';
 catalog_combo_template +=       '</select>';
@@ -101,6 +101,7 @@ catalogV2API('GET', '/campos', '', function(response){
     //===CATALOG BOXES DEPENDENCIES===
     $('.form-catalogo').change(function(){
         var comboAtualIndex = Number(this.id.substring(3,this.id.length));
+        console.log(comboAtualIndex);
         if(comboAtualIndex == campos.length-1)
             return;
         var url = '/opcoes_campos?relacionamentos[opcoes]='
@@ -109,6 +110,7 @@ catalogV2API('GET', '/campos', '', function(response){
         }
         url += '&id_campo=' + campos[comboAtualIndex+1].id;
         $('#sel' + comboAtualIndex+1).prop("disabled", false);
+        $('#sel' + comboAtualIndex+1).val('');
         setSelect2(comboAtualIndex + 1, url);
     });
     //======
