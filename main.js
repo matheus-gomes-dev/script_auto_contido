@@ -35,6 +35,7 @@ function catalogV2API(method, endpoint, data, cb){
 
 //===SET SELECT2 ON TARGET ELEMENT===
 function setSelect2(camposIndex, endpoint){
+    $('#sel' + camposIndex).html('');
     $('#sel' + camposIndex).select2({
         ajax: {
             url: APIurl + endpoint,
@@ -95,6 +96,7 @@ catalogV2API('GET', '/campos', '', function(response){
 
 
     //===GENERATE FIRST COMBO OPTIONS===
+    $('.form-catalogo').select2();
     setSelect2(0, '/opcoes_campos?id_campo=' + campos[0].id);
     //======
 
