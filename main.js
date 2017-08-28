@@ -96,7 +96,6 @@ catalogV2API('GET', '/campos', '', function(response){
 
 
     //===GENERATE FIRST COMBO OPTIONS===
-    $('.form-catalogo').select2();
     setSelect2(0, '/opcoes_campos?id_campo=' + campos[0].id);
     //======
 
