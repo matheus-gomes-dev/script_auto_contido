@@ -10,7 +10,7 @@ catalog_combo_template +=       '<select class="form-control form-catalogo" {{st
 catalog_combo_template +=           '<option value=""></option>';
 catalog_combo_template +=       '</select>';
 
-var cataloghtml = '<div>class="form-catalogo catalogo-combos">';
+var cataloghtml = '<div class="form-catalogo catalogo-combos">';
 
 //===CATALOG V2 API===
 function catalogV2API(method, endpoint, data, cb){
@@ -47,7 +47,7 @@ catalogV2API('GET', '/campos', '', function(response){
         else
             html = html.replace('{{status}}', 'disabled');
         //$('.catalogo-combos').append(html);
-        cataloghtml += html;
+        cataloghtml += html + '<br><br>';
         console.log(cataloghtml);
     }
     cataloghtml += '</div>'
