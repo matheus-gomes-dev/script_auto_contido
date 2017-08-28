@@ -5,7 +5,8 @@ console.log("Pagina carregado com sucesso");
 var htmlTemplate =  '<button>TESTE</button>'
 var APIurl = 'https://mid-homolog.totvs.com:4007/api/v2';
 var catalog_combo_template =    '<label for="sel{{counter}}">{{name}}:</label><br>';
-catalog_combo_template +=       '<select style="' + selectElementWidth + '" class="form-control form-catalogo" {{status}} id="sel{{counter}}">';
+catalog_combo_template +=       '<select style="width: ' + selectElementWidth + ';"';
+catalog_combo_template +=       'class="form-control form-catalogo" {{status}} id="sel{{counter}}">';
 catalog_combo_template +=           '<option value=""></option>';
 catalog_combo_template +=       '</select>';
 var cataloghtml = '<div class="form-catalogo catalogo-combos">';
