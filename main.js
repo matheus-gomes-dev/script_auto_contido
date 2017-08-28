@@ -96,6 +96,7 @@ catalogV2API('GET', '/campos', '', function(response){
 
     //===GENERATE FIRST COMBO OPTIONS===
     setSelect2(0);
+    $('.form-catalogo').select2();
     //======
 
     //===CATALOG BOXES DEPENDENCIES===
