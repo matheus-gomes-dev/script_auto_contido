@@ -5,7 +5,7 @@ console.log(aux)
 
 var htmlTemplate =  '<button>TESTE</button>'
 var APIurl = 'https://mid-homolog.totvs.com:4007/api/v2';
-var catalog_combo_template =    '<label for="sel{{counter}}">{{name}}:</label>';
+var catalog_combo_template =    '<label for="sel{{counter}}">{{name}}:</label><br>';
 catalog_combo_template +=       '<select class="form-control form-catalogo" {{status}} id="sel{{counter}}">';
 catalog_combo_template +=           '<option value=""></option>';
 catalog_combo_template +=       '</select>';
@@ -32,6 +32,49 @@ function catalogV2API(method, endpoint, data, cb){
 }
 //======
 
+
+//===SET SELECT2 OIN TARGET ELEMENT===
+function setSelect2(target, camposIndex){
+    $(target).select2({
+        ajax: {
+            url: APIurl + '/opcoes_campos?id_campo=' + campos[camposIndex].id,
+            dataType: 'json',
+            delay: 250,
+            tags: true,
+            data: function (params) {
+                console.log(params);
+                return {
+                    name: params.term// search term
+                };
+            },
+            processResults: function (data, params) {
+                console.log(data);
+                console.log(params);
+                // parse the results into the format expected by Select2
+                // since we are using custom formatting functions we do not need to
+                // alter the remote JSON data, except to indicate that infinite
+                // scrolling can be used
+                params.page = params.page || 1;
+
+                return {
+
+                    results: $.map(data.tags, function (item) {
+                        console.log(item);
+                        //var id_tag_zendesk = item.id + '|' + item.tag_zendesk;
+                        return {
+                            text: item
+                            //id: item.id
+                        }
+                    })
+                    //results: data.items
+                };
+            },
+            cache: true
+        }
+    });
+}
+//======
+
 catalogV2API('GET', '/campos', '', function(response){
 	var campos = response.campos;
 	console.log(campos);
@@ -53,6 +96,12 @@ catalogV2API('GET', '/campos', '', function(response){
     cataloghtml += '</div>'
     console.log(cataloghtml);
     document.getElementById("catalogV2").innerHTML = cataloghtml;
+
+
+    //===GENERATE FIRST COMBO OPTIONS===
+    setSelect2("#sel0", 0);
+    //======
+
     //$('.form-catalogo').select2();
 
     //===GENERATE FIRST COMBO OPTIONS===
