@@ -1,11 +1,10 @@
 
-console.log("Pagina carregado com sucesso");
+console.log("Pagina carregada!");
 
 
-var htmlTemplate =  '<button>TESTE</button>'
 var APIurl = 'https://mid-homolog.totvs.com:4007/api/v2';
 var catalog_combo_template =    '<label for="sel{{counter}}">{{name}}:</label><br>';
-catalog_combo_template +=       '<select style="height=28px; width: ' + selectElementWidth + ';"';
+catalog_combo_template +=       '<select style="height=28px; width: ' + selectElementWidth + ';" ';
 catalog_combo_template +=       'class="form-control form-catalogo" {{status}} id="sel{{counter}}">';
 catalog_combo_template +=           '<option value=""></option>';
 catalog_combo_template +=       '</select>';
@@ -96,28 +95,43 @@ catalogV2API('GET', '/campos', '', function(response){
 
 
     //===GENERATE FIRST COMBO OPTIONS===
+    $('.form-control').select2();
     setSelect2(0, '/opcoes_campos?id_campo=' + campos[0].id);
     //======
 
     //===CATALOG BOXES DEPENDENCIES===
     $('.form-catalogo').change(function(){
+
+        //===exit if position is the last combo===
         var comboAtualIndex = Number(this.id.substring(3,this.id.length));
-        console.log(comboAtualIndex);
-        if(comboAtualIndex == campos.length-1)
+        if(comboAtualIndex == campos.length-1){
             return;
+        }
+        //======
+
+        //===set url endpoint for select2===
         var url = '/opcoes_campos?relacionamentos[opcoes]='
         for(var i=0; i<=comboAtualIndex; i++){
             url += campos[comboAtualIndex].id + ':' + $('#sel' + i).val() + ' ';
         }
         url += '&id_campo=' + campos[comboAtualIndex+1].id;
-        $('#sel' + comboAtualIndex+1).prop("disabled", false);
-        $('#sel' + comboAtualIndex+1).val('');
+        console.log('#sel' + (comboAtualIndex+1));
+        $('#sel' + (comboAtualIndex+1)).attr("disabled", false);
+        $('#sel' + (comboAtualIndex+1)).val('');
         setSelect2(comboAtualIndex + 1, url);
+        //======
+
+        //===disable affected combos===
+        for (var j=comboAtualIndex+2; j<campos.length; j++){
+            console.log("apagou combos");
+            $('#sel' + j).prop("disabled", true);
+            $('#sel' + j).val("");
+            $('#sel' + j).text("");
+        }
+        //======
     });
     //======
 
 });
-
-//document.body.innerHTML +=htmlTemplate;
 
 
