@@ -95,7 +95,7 @@ catalogV2API('GET', '/campos', '', function(response){
 
 
     //===GENERATE FIRST COMBO OPTIONS===
-    setSelect2(0, '/opcoes_campos?id_campo=' + campos[camposIndex].id);
+    setSelect2(0, '/opcoes_campos?id_campo=' + campos[0].id);
     //======
 
     //===CATALOG BOXES DEPENDENCIES===
@@ -109,7 +109,7 @@ catalogV2API('GET', '/campos', '', function(response){
         }
         url += '&id_campo=' + campos[comboAtualIndex+1].id;
         $('#sel' + comboAtualIndex+1).prop("disabled", false);
-        setSelect2(comboAtualIndex, url);
+        setSelect2(comboAtualIndex + 1, url);
     });
     //======
 
