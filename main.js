@@ -34,8 +34,8 @@ function catalogV2API(method, endpoint, data, cb){
 
 
 //===SET SELECT2 ON TARGET ELEMENT===
-function setSelect2(target, camposIndex){
-    $(target).select2({
+function setSelect2(camposIndex){
+    $('#sel' + camposIndex).select2({
         ajax: {
             url: APIurl + '/opcoes_campos?id_campo=' + campos[camposIndex].id,
             dataType: 'json',
@@ -80,7 +80,6 @@ catalogV2API('GET', '/campos', '', function(response){
 	console.log(campos.length);
 
 	for(var i=0; i<campos.length; i++){
-		console.log("Executando for!");
         var html = catalog_combo_template;
         html = html.replace(/{{counter}}/g, i);
         html = html.replace('{{name}}', campos[i].nome);
@@ -90,27 +89,15 @@ catalogV2API('GET', '/campos', '', function(response){
             html = html.replace('{{status}}', 'disabled');
         //$('.catalogo-combos').append(html);
         cataloghtml += html + '<br><br>';
-        console.log(cataloghtml);
     }
-    cataloghtml += '</div>'
-    console.log(cataloghtml);
+    cataloghtml += '</div>';
     document.getElementById("catalogV2").innerHTML = cataloghtml;
 
 
     //===GENERATE FIRST COMBO OPTIONS===
-    setSelect2("#sel0", 0);
+    setSelect2(0);
     //======
 
-    //$('.form-catalogo').select2();
-
-    //===GENERATE FIRST COMBO OPTIONS===
-    /*
-    catalogV2API('GET', '/opcoes_campos?id_campo=' + campos[0].id, '', function(res){
-        for(var j=0; j<res.opcoes_campos.length; j++){
-            $('#sel0').append('<option value=' + res.opcoes_campos[j].id + '>' + res.opcoes_campos[j].nome + '</option>');
-        }
-    });
-    */
     //===CATALOG BOXES DEPENDENCIES===
     /*
     $('.form-catalogo').change(function(){
