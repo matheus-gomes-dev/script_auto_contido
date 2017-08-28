@@ -34,10 +34,10 @@ function catalogV2API(method, endpoint, data, cb){
 
 
 //===SET SELECT2 ON TARGET ELEMENT===
-function setSelect2(camposIndex){
+function setSelect2(camposIndex, endpoint){
     $('#sel' + camposIndex).select2({
         ajax: {
-            url: APIurl + '/opcoes_campos?id_campo=' + campos[camposIndex].id,
+            url: APIurl + endpoint,
             dataType: 'json',
             delay: 250,
             data: function (params) {
@@ -95,19 +95,22 @@ catalogV2API('GET', '/campos', '', function(response){
 
 
     //===GENERATE FIRST COMBO OPTIONS===
-    setSelect2(0);
-    $('.form-catalogo').select2();
+    setSelect2(0, '/opcoes_campos?id_campo=' + campos[camposIndex].id);
     //======
 
     //===CATALOG BOXES DEPENDENCIES===
-    /*
     $('.form-catalogo').change(function(){
-        if($("#hierarquia").is(':checked')){
-            console.log("Executando função do catalogo para o ID: " + this.id);
-            dynamicFormCombos(this);
+        var comboAtualIndex = Number(this.id.substring(3,this.id.length));
+        if(comboAtualIndex == campos.length-1)
+            return;
+        var url = '/opcoes_campos?relacionamentos[opcoes]='
+        for(var i=0; i<=comboAtualIndex; i++){
+            url += campos[comboAtualIndex].id + ':' + $('#sel' + i).val() + ' ';
         }
+        url += '&id_campo=' + campos[comboAtualIndex+1].id;
+        $('#sel' + comboAtualIndex+1).prop("disabled", false);
+        setSelect2(comboAtualIndex, url);
     });
-    */
     //======
 
 });
