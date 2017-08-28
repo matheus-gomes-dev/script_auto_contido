@@ -23,6 +23,7 @@
 				document.getElementsByTagName("head")[0].appendChild(jquery);
 
 				if (!~document.getElementsByTagName('head')[0].innerHTML.indexOf('select2')){
+					console.log("Teste D")
 					var select2=document.createElement("script");
 					select2.src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js";
 					select2.type="text/javascript";
@@ -31,7 +32,7 @@
 					var select2CSS=document.createElement("link");
 					select2CSS.rel="stylesheet";
 					select2CSS.href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css";
-					document.getElementsByTagName("head")[0].appendChild(select2);
+					document.getElementsByTagName("head")[0].appendChild(select2CSS);
 					select2.onload=installCatalogV2;
 					console.log("Teste C");
 				}
