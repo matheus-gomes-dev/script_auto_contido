@@ -40,7 +40,6 @@ function setSelect2(target, camposIndex){
             url: APIurl + '/opcoes_campos?id_campo=' + campos[camposIndex].id,
             dataType: 'json',
             delay: 250,
-            tags: true,
             data: function (params) {
                 console.log(params);
                 return {
@@ -58,12 +57,12 @@ function setSelect2(target, camposIndex){
 
                 return {
 
-                    results: $.map(data.tags, function (item) {
+                    results: $.map(data.opcoes_campos, function (item) {
                         console.log(item);
                         //var id_tag_zendesk = item.id + '|' + item.tag_zendesk;
                         return {
-                            text: item
-                            //id: item.id
+                            text: item.nome,
+                            id: item.id
                         }
                     })
                     //results: data.items
