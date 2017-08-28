@@ -3,40 +3,17 @@
 	<head>
 
 		<!--CATALOG V2 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css"/>
 		<script type="text/javascript">
 			var base_url="https://raw.githubusercontent.com/matheus-lima92/script_auto_contido/master/main.js";
 			var aux = "TESTE!!"
 			function installCatalogV2(){
 				//$("head").append('<script src="'+base_url + '"');
 				$("head").append('<script type="text/javascript" src="https://rawgit.com/matheus-lima92/script_auto_contido/master/main.js">');
-				console.log("Teste A");
-				console.log($('head').html())
 			}
-			if(window.jQuery){
-				console.log("Teste B");
-				installCatalogV2();
-			}
-			else{
-				var jquery=document.createElement("script");
-				jquery.src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js";
-				jquery.type="text/javascript";
-				document.getElementsByTagName("head")[0].appendChild(jquery);
-
-				if (!~document.getElementsByTagName('head')[0].innerHTML.indexOf('select2')){
-					console.log("Teste D")
-					var select2=document.createElement("script");
-					select2.src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js";
-					select2.type="text/javascript";
-					document.getElementsByTagName("head")[0].appendChild(select2);
-
-					var select2CSS=document.createElement("link");
-					select2CSS.rel="stylesheet";
-					select2CSS.href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css";
-					document.getElementsByTagName("head")[0].appendChild(select2CSS);
-					select2.onload=installCatalogV2;
-					console.log("Teste C");
-				}
-			}
+			installCatalogV2();
 		</script>
 		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>-->
 		<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css"/>-->
